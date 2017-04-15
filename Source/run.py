@@ -1,8 +1,8 @@
 import math
 import time
 
-seqMax = 3
-values = [1, 3, 7]
+seqMax = 5
+values = [1, 3, 7, 9]
 valuesQnt = len(values)
 targetValue = 10
 
@@ -55,20 +55,23 @@ while c < seqSingleQnt:
 
 seqTest = [None] * seqMax
 seqFinal = []
-a = 0
+seqSingleQnt = len(seqSingle)
 ver = True
 stg = -1
+
+a = 0
+
 while ver == True:
 	
 	seqTest[-1] = -1
 	testOverFl = False
-	while (not(all(isinstance(item, int) for item in seqTest)) or seqTest[0] < 8 or sum(seqTest) < (len(seqSingle) - 1) * seqMax):
+	while (not(all(isinstance(item, int) for item in seqTest)) or sum(seqTest) < (len(seqSingle) - 1) * seqMax):
 
 		
-		if seqTest[stg] < 9:
+		if seqTest[stg] <= seqSingleQnt:
 			seqTest[stg] += 1
 		
-		if seqTest[stg] == 9:
+		if seqTest[stg] == seqSingleQnt:
 			testOverFl = True
 		
 		while testOverFl:
@@ -77,14 +80,13 @@ while ver == True:
 				seqTest[stg - 1] = 0
 			else:
 				seqTest[stg - 1] += 1
-			if seqTest[stg - 1] == 9:
+			if seqTest[stg - 1] == seqSingleQnt:
 				stg -= 1
 			else:
 				stg = -1
 				testOverFl = False		
 		a += 1
-		print(str(a) + ': AFT: ' + str(seqTest) + " | " + str(stg))
-
+	print(str(a) + ': AFT: ' + str(seqTest) + " | " + str(stg))
 	if (not(all(isinstance(item, int) for item in seqTest)) or (sum(seqTest) == (len(seqSingle) - 1) * seqMax)):
 		ver = False
 
