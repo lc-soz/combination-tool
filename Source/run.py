@@ -1,8 +1,10 @@
 import math
 import time
 
+timeFrt = time.time()
+
 seqMax = 5
-values = [1, 3, 7, 9]
+values = [1, 3, 7, 10]
 valuesQnt = len(values)
 targetValue = 10
 
@@ -58,16 +60,13 @@ seqFinal = []
 seqSingleQnt = len(seqSingle)
 ver = True
 stg = -1
-
 a = 0
-
+timeSec = time.time()
 while ver == True:
 	
 	seqTest[-1] = -1
 	testOverFl = False
 	while (not(all(isinstance(item, int) for item in seqTest)) or sum(seqTest) < (len(seqSingle) - 1) * seqMax):
-
-		
 		if seqTest[stg] <= seqSingleQnt:
 			seqTest[stg] += 1
 		
@@ -90,4 +89,6 @@ while ver == True:
 	if (not(all(isinstance(item, int) for item in seqTest)) or (sum(seqTest) == (len(seqSingle) - 1) * seqMax)):
 		ver = False
 
-
+timeLst = time.time()
+print(timeSec - timeFrt)
+print(timeLst - timeSec)
