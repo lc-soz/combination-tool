@@ -8,18 +8,18 @@ values = [1, 3, 7, 10]
 valuesQnt = len(values)
 targetValue = 10
 
-def seqTotalSize(val):
+def seqTotalSize(val, seqSgl):
 	seqTotalSize = 0
 	for i in val:
 		if i != None:
 			seqTotalSize += seqSgl[i][0][1]
 	return seqTotalSize 
 
-def seqTotalValue(val):
+def seqTotalValue(val, seqSgl):
 	seqTotalValue = 0
 	for i in val:
 		if i != None:
-			seqTotalValue += seqSgl[i][0][0] * seqSgl[i][0][1]
+			seqTotalValue += seqSgl[i][1]
 	return seqTotalValue
 
 # Amount of possible combinations with repetition per sequence size
@@ -59,14 +59,14 @@ while c < seqSglQnt:
 	seqSglSize = (c / valuesQnt) + 1
 	valuesIndex = c % valuesQnt
 	seqSglSiz.append([[values[valuesIndex], seqSglSize], values[valuesIndex] * seqSglSize])
-	print(str(c) + "|" + str(valuesIndex) + "|" + str(seqSglSize))
-	print(str(seqSglSiz) + '\n')
+	#print(str(c) + "|" + str(valuesIndex) + "|" + str(seqSglSize))
+	#print(str(seqSglSiz) + '\n')
 	c += 1
 
 # Combination of single sequences to match target value
 
 seqTest = [None] * seqMax
-seqFinal = []
+seqFinalVal = []
 seqSglQnt = len(seqSglVal)
 ver = True
 stg = -1
@@ -94,13 +94,15 @@ while ver == True:
 			else:
 				stg = -1
 				testOverFl = False		
+		if seqTotalValue(seqTest, seqSglVal) == targetValue and seqTotalSize(seqTest, seqSglVal) <= seqMax:
+			seqFinalVal.append(list(seqTest))	
 		a += 1
 	print("Full run: " + str(a) + ': AFT: ' + str(seqTest) + " | " + str(stg))
 	if (not(all(isinstance(item, int) for item in seqTest)) or (sum(seqTest) == (len(seqSglVal) - 1) * seqMax)):
 		ver = False
 
 seqTest = [None] * seqMax
-seqFinal = []
+seqFinalSiz = []
 lmt = len(seqSglSiz)
 ver = True
 stg = -1
@@ -129,13 +131,14 @@ while ver == True:
 			else:
 				stg = -1
 				testOverFl = False		
+		if seqTotalValue(seqTest, seqSglSiz) == targetValue and seqTotalSize(seqTest, seqSglSiz) <= seqMax:
+			seqFinalSiz.append(list(seqTest))
 		a += 1
-		print(seqTest, lmt)
-	print("Limite size: " + str(a) + ': AFT: ' + str(seqTest) + " | " + str(stg))
+	print("Limit size: " + str(a) + ': AFT: ' + str(seqTest) + " | " + str(stg))
 	if (not(all(isinstance(item, int) for item in seqTest)) or sum(seqTest) == ((lmt - 1) * seqMax)):
 		ver = False
 
 timeLst = time.time()
-print(timeSec - timeFrt)
-print("Full run:   " + str(timeThd - timeSec))
-print("Limit size: " + str(timeLst - timeThd))
+print('\n' + "Before runs: " + str(timeSec - timeFrt))
+print("Full run:    " + str(timeThd - timeSec))
+print("Limit size:  " + str(timeLst - timeThd) + '\n')
