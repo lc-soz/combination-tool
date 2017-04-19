@@ -46,7 +46,7 @@ def fullLoop(seqMax, values, targetValue, optPrint):
 			counterSgl += 1
 		break
 	if optPrint != 0:
-		print("Full Loop: " + str(seqMax) + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
+		print("Full Loop: " + str(seqMax) + " | " + str(counterSgl) + " | " + str(len(seqFinalSgl)))
 
 	timeLst = time.time()
 	print("Full Loop: (" + str(seqMax) + ") " + str(timeLst - timeFst))
