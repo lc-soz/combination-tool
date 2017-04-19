@@ -7,7 +7,7 @@ def seqTlValue(tbl, values):
 			seqTlValue += values[i]
 	return seqTlValue
 
-def fullLoop(seqMax, values, targetValue, optPrint):
+def fullLoop(seqMax, values, targetValue, optPrint, optPrintSeq, optPrintSeqSize):
 	timeFst = time.time()
 	seqTest = [None] * seqMax
 	seqFinalSgl = []

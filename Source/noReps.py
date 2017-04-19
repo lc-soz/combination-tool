@@ -7,15 +7,30 @@ def seqTlValue(tbl, values):
 			seqTlValue += values[i]
 	return seqTlValue
 
-def printList(lst, values):
+def printList(lst, values, optPrintSeq, optPrintSeqSize):
+	count = 1
 	for seq in lst:
 		seqPrint = []
 		for val in seq:
 			if val != None:
 				seqPrint.append(values[val])
-		print seqPrint
+
+		if optPrintSeq == "all" and optPrintSeqSize == "all":
+			print seqPrint
+		elif optPrintSeq != "all" and optPrintSeqSize == "all":
+			print seqPrint
+			if count == int(optPrintSeq): break
+			count += 1
+		elif optPrintSeq == "all" and optPrintSeqSize != "all":
+			if len(seqPrint) == int(optPrintSeqSize):
+				print seqPrint
+		elif optPrintSeq != "all" and optPrintSeqSize != "all":
+			if len(seqPrint) == int(optPrintSeqSize):
+				print seqPrint
+				if count == int(optPrintSeq): break
+				count += 1
 		
-def noReps(seqMax, values, targetValue, optPrint):
+def noReps(seqMax, values, targetValue, optPrint, optPrintSeq, optPrintSeqSize):
 	timeFst = time.time()
 	seqTest = [None] * seqMax
 	seqFinalLss = []
@@ -59,10 +74,10 @@ def noReps(seqMax, values, targetValue, optPrint):
 	
 			counterLss += 1
 		break
-		
+
 	if optPrint == 1:
 		print("Less Rep " + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
 	elif optPrint == 2:
-		printList(seqFinalLss, values)
+		printList(seqFinalLss, values, optPrintSeq, optPrintSeqSize)
 	timeLst = time.time()
 	print("Less Rep  | " + str(seqMax) + " | " + str(timeLst - timeFst))
