@@ -8,16 +8,14 @@ def seqTlValue(tbl, values):
 	return seqTlValue
 
 def fullLoop(seqMax, values, targetValue, optPrint):
-
 	timeFst = time.time()
 	seqTest = [None] * seqMax
 	seqFinalSgl = []
 	lmt = len(values)
 	stg = -1
 	counterSgl = 0
-
+	
 	while True:
-
 		seqTest[-1] = -1
 		testOverFl = False
 		while (not(all(isinstance(item, int) for item in seqTest)) or sum(seqTest) < ((lmt - 1) * seqMax)):
@@ -41,10 +39,10 @@ def fullLoop(seqMax, values, targetValue, optPrint):
 	
 			if seqTlValue(seqTest, values) == targetValue:
 				seqFinalSgl.append(list(seqTest))
-			#print("Sgl: ",seqTest)
 	
 			counterSgl += 1
 		break
+		
 	if optPrint != 0:
 		print("Full Loop" + " | " + str(counterSgl) + " | " + str(len(seqFinalSgl)))
 

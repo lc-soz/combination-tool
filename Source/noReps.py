@@ -7,8 +7,15 @@ def seqTlValue(tbl, values):
 			seqTlValue += values[i]
 	return seqTlValue
 
+def printList(lst, values):
+	for seq in lst:
+		seqPrint = []
+		for val in seq:
+			if val != None:
+				seqPrint.append(values[val])
+		print seqPrint
+		
 def noReps(seqMax, values, targetValue, optPrint):
-	
 	timeFst = time.time()
 	seqTest = [None] * seqMax
 	seqFinalLss = []
@@ -17,7 +24,6 @@ def noReps(seqMax, values, targetValue, optPrint):
 	counterLss = 0
 
 	while True:
-
 		seqTest[-1] = -1
 		testOverFl = False
 		while (not(all(isinstance(item, int) for item in seqTest)) or sum(seqTest) < ((lmt - 1) * seqMax)):
@@ -50,12 +56,13 @@ def noReps(seqMax, values, targetValue, optPrint):
 	
 			if seqTlValue(seqTest, values) == targetValue:
 				seqFinalLss.append(list(seqTest))
-			#print("Lss: ", seqTest)
 	
 			counterLss += 1
 		break
-	if optPrint != 0:
+		
+	if optPrint == 1:
 		print("Less Rep " + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
-
+	elif optPrint == 2:
+		printList(seqFinalLss, values)
 	timeLst = time.time()
 	print("Less Rep  | " + str(seqMax) + " | " + str(timeLst - timeFst))
