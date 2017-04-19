@@ -55,7 +55,7 @@ def noReps(seqMax, values, targetValue, optPrint):
 			counterLss += 1
 		break
 	if optPrint != 0:
-		print("Less Rep.: " + str(seqMax) + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
+		print("Less Rep " + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
 
 	timeLst = time.time()
-	print("Less Rep.: (" + str(seqMax) + ") " + str(timeLst - timeFst))
+	print("Less Rep  | " + str(seqMax) + " | " + str(timeLst - timeFst))
