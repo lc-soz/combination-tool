@@ -5,6 +5,6 @@ targetMax = 265
 optTimes = 1
 
 optRuns = "a"
-optPrint = 0
+optPrint = 0,
 optPrintSeq = 3
 optPrintSeqSize = seqMax

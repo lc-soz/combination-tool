@@ -15,7 +15,7 @@ if optChg == "no":
 	targetMax = input("Max target value: ")
 	optRuns = raw_input("Type: " + '\n' + "a = Combinations, don't consider order" + '\n' + "b = Permutation, consider order of elements" + '\n' + "c = Both" + '\n' + "Opt: ")
 	optTimes = int(raw_input("Amount of runs: "))
-	optPrint = int(raw_input("Match sequences & Time (2), Full text & Time (1), Match sequences (0): "))
+	optPrint = raw_input("Full text (2), Time (1), Match sequences (0): (01;21;..)")
 	optPrintSeq = raw_input("Print 'all' sequences or other amount? (all/int) ")
 	optPrintSeqSize = raw_input("Print 'all' sizes or one specific? (all/int) ")
 
@@ -32,10 +32,19 @@ if 'optChgSome' in locals():
 			targetMax = input("Max target value: ")
 		if opt == '4': optRuns = raw_input("Type: " + '\n' + "a = Combinations, don't consider order" + '\n' + "b = Permutation, consider order of elements" + '\n' + "c = Both" + '\n' + "Opt: ")
 		if opt == '5': optTimes = int(raw_input("Amount of runs: "))
-		if opt == '6': optPrint = int(raw_input("Match sequences & Time (2), Full text & Time (1), Match sequences (0): "))
+		if opt == '6': optPrint = raw_input("Full text (2), Time (1), Match sequences (0): (01;21;..)")
 		if opt == '7': optPrintSeq = str(raw_input("Print 'all' sequences or other amount? (all/int) "))
 		if opt == '8': optPrintSeqSize = str(raw_input("Print 'all' sizes or one specific? (all/int) "))
 
+optPrtVal = []
+for idx, val in enumerate(tuple(optPrint)):
+	val = int(val)
+	optPrtVal.append(val)
+optPrint = tuple(optPrtVal)
+
+print type(optPrint)
+print optPrint
+time.sleep(3)
 cls()
 print "         OPTIONS         ", "            VALUES"
 print "Sequence size:           ", seqMax
@@ -44,16 +53,13 @@ print "Min to Max target value: ", targetMin, " to ", targetMax
 print "Amount of runs:          ", optTimes
 
 print "\nPRINTED:"
-if optPrint == 1:
-	print "Target Value: 'value'"
-	print "Full text (Method | Sequences tested | Match sequences)"
-	print "Time      (Method | Sequence size | Time used)\n"
-elif optPrint == 2:
-	print "Target Value: 'value'"
-	print optPrintSeq, "matching sequences,", "size:", optPrintSeqSize
-	print "Time      (Method | Sequence size | Time used)\n"
-elif optPrint == 0:
-	print "Target Value: 'value'"
-	print optPrintSeq, "matching sequences,", "size:", optPrintSeqSize, "\n"
-	
+print "Target Value: 'value'"
+for idx, prt in enumerate(optPrint):
+	if prt == 0:
+		print optPrintSeq, "matching sequences,", "size:", optPrintSeqSize, ''
+	elif prt == 1:
+		print "Time      (Method | Sequence size | Time used)"
+	elif prt == 2:
+		print "Full text (Method | Sequences tested | Match sequences)"
+print ""
 time.sleep(0.5)

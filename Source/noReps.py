@@ -52,15 +52,11 @@ def noReps(seqMax, values, targetValue, optPrint, optPrintSeq, optPrintSeqSize):
 	
 			counterLss += 1
 		break
-
-	if optPrint == 1:
-		print("Less Rep " + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
-		timeLst = time.time()
-		print("Less Rep  | " + str(seqMax) + " | " + str(timeLst - timeFst))
-	elif optPrint == 2:
-		printList.printList(seqFinalLss, values, optPrintSeq, optPrintSeqSize)
-		timeLst = time.time()
-		print("Less Rep  | " + str(seqMax) + " | " + str(timeLst - timeFst))
-	elif optPrint == 0:
-		printList.printList(seqFinalLss, values, optPrintSeq, optPrintSeqSize)
-		
+	timeLst = time.time()
+	for idx, prt in enumerate(optPrint):
+		if prt == 0:
+			printList.printList(seqFinalLss, values, optPrintSeq, optPrintSeqSize)
+		elif prt == 1:
+			print("Less Rep  | " + str(seqMax) + " | " + str(timeLst - timeFst))
+		elif prt == 2:
+			print("Less Rep " + " | " + str(counterLss) + " | " + str(len(seqFinalLss)))
