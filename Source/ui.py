@@ -1,6 +1,7 @@
 from config import *
 import os
 import time
+import printTbl
 
 def cls():
 	os.system('cls' if os.name == 'nt' else 'clear')
@@ -36,13 +37,10 @@ for idx, val in enumerate(tuple(optPrint)):
 optPrint = tuple(optPrtVal)
 
 cls()
-print  "|", "         OPTIONS         ", "|","             VALUES              |"
-print  "|---------------------------+----------------------------------|"
-print  "|", "Sequence size:           ", "|",seqMax, "                              |"
-print  "|", "Values:                  ", "|",values, "|"
-print  "|", "Min to Max target value: ", "|",targetMin, " to ", targetMax, "                    |"
-print  "|", "Amount of runs:          ", "|",optTimes, "                               |"
-print  "|---------------------------+----------------------------------|"
+
+head = ["OPTIONS", "VALUES"]
+data = [["Sequence size", seqMax],["Values", values],["Min to Max target value", str(str(targetMin) + " to " + str(targetMax))],["Amount of runs", optTimes]]
+printTbl.prtTbl(head, data)
 
 print "\nPRINTED:"
 print "Target Value: 'value'"

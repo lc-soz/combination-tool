@@ -2,8 +2,10 @@ from config import *
 import math
 
 # Create function to print organized table on console
+
 '''
->"head" will be a list or tuple of all the headers
+>"head" will be a list or tuple of all the headers. Example:
+["OPTIONS", "VALUES"]
 >"data" will be a matrix, for example: 
 - In a table with 2 colums
 index 0: ["Sequence size", 22]
@@ -61,8 +63,3 @@ def prtTbl(head, data):
 	print lineVertInt
 	print content
 	print lineVertExt
-		
-		
-head = ["OPTIONS", "VALUES"]
-data = [["Sequence size", seqMax],["Values", values],["Min to Max target value", str(str(targetMin) + " to " + str(targetMax))],["Amount of runs", optTimes]]
-prtTbl(head, data)
