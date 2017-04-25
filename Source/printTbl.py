@@ -14,10 +14,14 @@ This table will be: [["Sequence size", 22],  ["Values", (16, 18, 19, 20, 21, 24,
 '''
 
 def prtTbl(head, data):
-#	for idx, val in enumerate(head):
-#		print idx, val
 	colAmount = len(head)
 	colSizes = [0] * colAmount
+	for idx, val in enumerate(head):
+		valStr = str(val)
+		if colSizes[idx] < len(valStr):
+			colSizes[idx] = len(valStr) + 2 #Space before and after text (2)
+			if (len(valStr) % 2) == 1: #Make value even
+				colSizes[idx] += 1
 	for idx, val in enumerate(data):
 		for i in range(0, colAmount):
 			valStr = str(val[i])
@@ -25,7 +29,7 @@ def prtTbl(head, data):
 				colSizes[i] = len(valStr) + 2
 				if (len(valStr) % 2) == 1:
 					colSizes[i] += 1
-	
+					
 	# Vertical upper and lower line
 	lineVertExtSize = colAmount - 1
 	for size in colSizes:
