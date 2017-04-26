@@ -28,7 +28,21 @@ if 'optChgDef' in locals():
 		if opt == '5': optTimes = int(raw_input("Amount of runs: "))
 		if opt == '6': optPrint = raw_input("Full text (2), Time (1), Match sequences (0): (01;21;..)")
 		if opt == '7': optPrintSeq = str(raw_input("Print 'all' sequences or other amount? (all/int) "))
-		if opt == '8': optPrintSeqSize = str(raw_input("Print 'all' sizes or one specific? (all/int) "))
+		if opt == '8': optPrintSeqSize = str(raw_input("Print 'all' sizes, a specific one or a list? (all/int/'1,2;3,5,8;...') "))
+
+if optPrintSeqSize != "all":
+	optPrintSeqSizeChar = ""
+	optPrintSeqSizeTemp = []
+	for char in optPrintSeqSize:
+		if char != ",":
+			optPrintSeqSizeChar += char
+		else:
+			optPrintSeqSizeTemp.append(int(optPrintSeqSizeChar))
+			optPrintSeqSizeChar = ""
+	if optPrintSeqSizeChar != "" and optPrintSeqSizeTemp != []:
+		optPrintSeqSizeTemp.append(int(optPrintSeqSizeChar))
+		optPrintSeqSize = optPrintSeqSizeTemp
+	else: optPrintSeqSize = int(optPrintSeqSize)
 
 optPrtVal = []
 for idx, val in enumerate(tuple(optPrint)):
@@ -46,7 +60,7 @@ print "\nPRINTED:"
 print "Target Value: 'value'"
 for idx, prt in enumerate(optPrint):
 	if prt == 0:
-		print optPrintSeq, "matching sequences,", "size:", optPrintSeqSize, ''
+		print optPrintSeq, "matching sequences,", "size(s):", optPrintSeqSize, ''
 	elif prt == 1:
 		print "Time      (Method | Sequence size | Time used)"
 	elif prt == 2:
