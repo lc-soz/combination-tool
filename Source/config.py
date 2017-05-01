@@ -8,3 +8,4 @@ optRuns = "a"
 optPrint = 0,
 optPrintSeq = 15
 optPrintSeqSize = "all"
+optPrintSeqOrder = 0

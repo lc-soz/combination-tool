@@ -1,4 +1,9 @@
-def printList(lst, values, optPrintSeq, optPrintSeqSize):
+import difSeq
+
+def printList(lst, values, optPrintSeq, optPrintSeqSize, optPrintSeqOrder):
+	if optPrintSeqOrder == 1:
+		lst = difSeq.difSeq(lst, optPrintSeqOrder)
+	
 	count = 0
 	for seq in lst:
 		seqPrint = []
